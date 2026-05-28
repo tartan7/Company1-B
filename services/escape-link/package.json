@@ -1,0 +1,24 @@
+{
+  "name": "escape-link",
+  "version": "1.0.0",
+  "description": "Outbound telephony service for Nitto fallback calls",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/__tests__/**/*.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "twilio": "^5.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
