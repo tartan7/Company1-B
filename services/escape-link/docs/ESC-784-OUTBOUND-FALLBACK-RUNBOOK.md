@@ -44,17 +44,24 @@ Expected output includes:
 
 ## Live Call Execution
 
-1. Copy `.env.example` to `.env` and fill in real credentials:
+1. Provision runtime credentials in-memory and write restricted runtime file:
+   ```bash
+   export TWILIO_ACCOUNT_SID=AC...
+   export TWILIO_AUTH_TOKEN=...
+   export TWILIO_FROM_NUMBER=+81...
+   ./scripts/provision-twilio-runtime-credentials.sh
+   ```
+2. (Optional) Copy `.env.example` to `.env` for static local defaults:
    ```bash
    cp .env.example .env
    # edit .env with Twilio credentials from vault
    ```
-2. Set `DRY_RUN=false`:
+3. Set `DRY_RUN=false`:
    ```bash
    DRY_RUN=false node dist/scripts/validate-outbound-fallback.js
    ```
-3. Capture the output. Note: `callSid`, `numberDialed`, `timestamp`, `status`.
-4. Post evidence to ESC-751 and ESC-778 immediately after the call.
+4. Capture readiness proof lines: `readiness_utc`, `readiness_call_sid`, `readiness_status`.
+5. Post evidence to ESC-751 and ESC-778 immediately after the call.
 
 ### Call Script (Japanese)
 

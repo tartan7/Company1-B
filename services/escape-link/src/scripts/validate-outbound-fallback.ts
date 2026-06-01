@@ -4,9 +4,12 @@
  * Runs a deterministic fallback simulation without placing a live PSTN call.
  * Set DRY_RUN=false and supply real Twilio creds to execute a real test call.
  */
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import { placeOutboundCall, callConfigFromEnv } from '../lib/telephony/outbound.js';
 import type { CallTarget } from '../lib/telephony/types.js';
+
+dotenv.config();
+dotenv.config({ path: '.env.runtime', override: false });
 
 const DRY_RUN = process.env.DRY_RUN !== 'false';
 const intentId = `outbound-esc784-${Date.now()}`;
@@ -47,6 +50,9 @@ try {
   });
 
   console.log('[validate-outbound-fallback] live result:', JSON.stringify(result, null, 2));
+  console.log(`[validate-outbound-fallback] readiness_utc=${new Date().toISOString()}`);
+  console.log(`[validate-outbound-fallback] readiness_call_sid=${result.callSid ?? 'n/a'}`);
+  console.log(`[validate-outbound-fallback] readiness_status=${result.status}`);
 
   if (!result.success) {
     console.error('[validate-outbound-fallback] FAIL: call did not succeed');
