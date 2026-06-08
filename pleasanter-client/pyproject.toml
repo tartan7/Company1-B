@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pleasanter-client"
+version = "0.1.0"
+description = "Python HTTP client library for Pleasanter SaaS API"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Engineering Team", email = "eng@example.com"}]
+
+dependencies = [
+    "httpx>=0.24.0",
+    "pydantic>=2.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-httpx>=0.20.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=src/pleasanter_client --cov-report=term-missing --strict-markers"
+python_files = ["test_*.py"]
+
+[tool.coverage.run]
+source = ["src/pleasanter_client"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I"]

@@ -1,0 +1,54 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'MVP Monitoring'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files:
+  - 'alert_rules.yml'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'bs-03-financial-statements'
+    static_configs:
+      - targets: ['localhost:3001']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'wk-01-uptime-monitor'
+    static_configs:
+      - targets: ['localhost:3002']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'bs-02-invoice-generator'
+    static_configs:
+      - targets: ['localhost:3004']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 't-01-tourism-booking'
+    static_configs:
+      - targets: ['localhost:3005']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'f-01-seasonal-labor'
+    static_configs:
+      - targets: ['localhost:3003']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'a-01-faq-bot'
+    static_configs:
+      - targets: ['localhost:3006']
+    metrics_path: '/metrics'
+    scrape_interval: 10s

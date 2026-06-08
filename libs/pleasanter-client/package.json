@@ -1,0 +1,28 @@
+{
+  "name": "@libs/pleasanter-client",
+  "version": "1.0.0",
+  "description": "Pleasanter API client library with authentication, rate limiting, and multi-tenant support",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./auth": "./dist/auth.js",
+    "./client": "./dist/client.js",
+    "./pagination": "./dist/pagination.js",
+    "./endpoints/*": "./dist/endpoints/*.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --experimental-test-coverage dist/**/*.test.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "tsx": "^4.22.3",
+    "typescript": "^5.9.3"
+  }
+}
